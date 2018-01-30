@@ -1,6 +1,6 @@
 # extract-email-from-url
 
-Extract email addresses from a URL and output to CSV.
+Extract email addresses from a user inputed set of URLs and output to CSV.
 
 ### Requirements
 
