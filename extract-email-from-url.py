@@ -4,6 +4,8 @@ import requests.exceptions
 from urllib.parse import urlsplit
 from collections import deque
 import re
+import time
+import csv
 
 # user is prompted for a queue of urls to be crawled
 user_input_test = "y"
@@ -42,5 +44,13 @@ while len(new_urls):
     # extract all email addresses and add them into the resulting set
     new_emails = set(re.findall(r"[a-z0-9\.\-+_]+@[a-z0-9\.\-+_]+\.[a-z]+", response.text, re.I))
     emails.update(new_emails)
+
+# Write emails to timestamped CSV
+extensionTime = time.strftime("%H%M%S")
+csvfile = "output_emails_"+extensionTime+".csv"
+with open(csvfile, "w") as output:
+    writer = csv.writer(output, lineterminator='\n')
+    for val in emails:
+        writer.writerow([val])
 
 print(emails) # Debugging: user can inspect emails
