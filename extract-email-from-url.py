@@ -6,7 +6,8 @@ from collections import deque
 import re
 
 # a queue of urls to be crawled
-new_urls = deque(['http://www.themoscowtimes.com/contact_us/index.php'])
+user_input_url = input("Enter URL here: ")
+new_urls = deque([user_input_url])
 
 # a set of urls that we have already crawled
 processed_urls = set()
@@ -37,3 +38,5 @@ while len(new_urls):
     # extract all email addresses and add them into the resulting set
     new_emails = set(re.findall(r"[a-z0-9\.\-+_]+@[a-z0-9\.\-+_]+\.[a-z]+", response.text, re.I))
     emails.update(new_emails)
+
+print(emails) # Debugging: user can inspect emails
