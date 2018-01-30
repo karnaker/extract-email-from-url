@@ -53,4 +53,4 @@ with open(csvfile, "w") as output:
     for val in emails:
         writer.writerow([val])
 
-print(emails) # Debugging: user can inspect emails
+print("Completed. View output file for emails.")
