@@ -5,9 +5,13 @@ from urllib.parse import urlsplit
 from collections import deque
 import re
 
-# a queue of urls to be crawled
-user_input_url = input("Enter URL here: ")
-new_urls = deque([user_input_url])
+# user is prompted for a queue of urls to be crawled
+user_input_test = "y"
+new_urls = deque([])
+while user_input_test == "y":
+    user_input_url = input("Enter URL here: ")
+    new_urls.append(user_input_url)
+    user_input_test = input("Enter another URL ([y]/n)? ")
 
 # a set of urls that we have already crawled
 processed_urls = set()
