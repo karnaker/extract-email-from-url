@@ -54,6 +54,11 @@ while len(user_urls):
         continue
 
     # create a beutiful soup for the html document
+    # Potential debug edits to get rid of warning here,
+    # change code as follows:
+    # BeautifulSoup(YOUR_MARKUP})
+    # to this:
+    # BeautifulSoup(YOUR_MARKUP, "lxml")
     soup = BeautifulSoup(response.text)
 
     # find and process all the anchors in the document
