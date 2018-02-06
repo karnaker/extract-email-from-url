@@ -37,18 +37,18 @@ emails = set()
 while len(user_urls):
 
     # move next url from the queue to the set of processed urls
-    url = user_urls.popleft()
-    processed_user_urls.add(url)
+    url_s1 = user_urls.popleft()
+    processed_user_urls.add(url_s1)
 
     # extract base url to resolve relative links
-    parts = urlsplit(url)
-    base_url = "{0.scheme}://{0.netloc}".format(parts)
-    path = url[:url.rfind('/')+1] if '/' in parts.path else url
+    parts_s1 = urlsplit(url_s1)
+    base_url_s1 = "{0.scheme}://{0.netloc}".format(parts_s1)
+    path_s1 = url_s1[:url_s1.rfind('/')+1] if '/' in parts_s1.path else url_s1
 
     # get url's content
-    print("Processing %s" % url)
+    print("Processing %s" % url_s1)
     try:
-        response = requests.get(url)
+        response = requests.get(url_s1)
     except (requests.exceptions.MissingSchema, requests.exceptions.ConnectionError):
         # ignore pages with errors
         continue
@@ -62,9 +62,9 @@ while len(user_urls):
         link = anchor.attrs["href"] if "href" in anchor.attrs else ''
         # resolve relative links
         if link.startswith('/'):
-            link = base_url + link
+            link = base_url_s1 + link
         elif not link.startswith('http'):
-            link = path + link
+            link = path_s1 + link
         # add the new url to the queue if it was not enqueued nor processed yet and starts with the original path
         if not link in user_urls and not link in processed_user_urls and not link in new_urls and not link in processed_urls and user_input_contain_crawl_to_base_path in link:
             new_urls.append(link)
