@@ -93,9 +93,6 @@ while len(new_urls):
     new_emails = set(re.findall(r"[a-z0-9\.\-+_]+@[a-z0-9\.\-+_]+\.[a-z]+", response.text, re.I))
     emails.update(new_emails)
 
-print(emails)
-
-"""
 # Write emails to timestamped CSV
 now = datetime.datetime.now()
 extensionDateTime = now.strftime("%Y%m%d_%H%M%S")
@@ -106,4 +103,3 @@ with open(csvfile, "w") as output:
         writer.writerow([val])
 
 print("Completed. View output file for emails.")
-"""
