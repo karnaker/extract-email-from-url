@@ -18,11 +18,35 @@ while user_input_yes_no == "y":
         print("Enter y or n")
         user_input_yes_no = input("Enter another URL ([y]/n)? ")
 
+# a base url path to contain the crawl to
+user_input_contain_crawl_to_base_path = input("Enter path to contain the crawl to: ")
+
 # a set of urls that we have already crawled
 processed_urls = set()
 
 # a set of crawled emails
 emails = set()
+
+# Test 1: Print URLs from list #1
+print(new_urls)
+
+"""
+    # create a beutiful soup for the html document
+    soup = BeautifulSoup(response.text)
+
+    # find and process all the anchors in the document
+    for anchor in soup.find_all("a"):
+        # extract link url from the anchor
+        link = anchor.attrs["href"] if "href" in anchor.attrs else ''
+        # resolve relative links
+        if link.startswith('/'):
+            link = base_url + link
+        elif not link.startswith('http'):
+            link = path + link
+        # add the new url to the queue if it was not enqueued nor processed yet and starts with the original path
+        if not link in new_urls and not link in processed_urls and user_input_contain_crawl_to_base_path in link:
+            new_urls.append(link)
+
 
 # process urls one by one until we exhaust the queue
 while len(new_urls):
@@ -49,22 +73,6 @@ while len(new_urls):
     new_emails = set(re.findall(r"[a-z0-9\.\-+_]+@[a-z0-9\.\-+_]+\.[a-z]+", response.text, re.I))
     emails.update(new_emails)
 
-    # create a beutiful soup for the html document
-    soup = BeautifulSoup(response.text)
-
-    # find and process all the anchors in the document
-    for anchor in soup.find_all("a"):
-        # extract link url from the anchor
-        link = anchor.attrs["href"] if "href" in anchor.attrs else ''
-        # resolve relative links
-        if link.startswith('/'):
-            link = base_url + link
-        elif not link.startswith('http'):
-            link = path + link
-        # add the new url to the queue if it was not enqueued nor processed yet and starts with the original path
-        if not link in new_urls and not link in processed_urls and link.startswith(path):
-            new_urls.append(link)
-
 # Write emails to timestamped CSV
 now = datetime.datetime.now()
 extensionDateTime = now.strftime("%Y%m%d_%H%M%S")
@@ -75,3 +83,4 @@ with open(csvfile, "w") as output:
         writer.writerow([val])
 
 print("Completed. View output file for emails.")
+"""
