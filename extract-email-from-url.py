@@ -8,12 +8,15 @@ import datetime
 import csv
 
 # user is prompted for a queue of urls to be crawled
-user_input_test = "y"
+user_input_another_URL = "y"
 new_urls = deque([])
-while user_input_test == "y":
+while user_input_another_URL == "y":
     user_input_url = input("Enter URL here: ")
     new_urls.append(user_input_url)
-    user_input_test = input("Enter another URL ([y]/n)? ")
+    user_input_another_URL = input("Enter another URL ([y]/n)? ")
+    while user_input_another_URL != "y" and user_input_another_URL != "n":
+        print("Enter y or n")
+        user_input_another_URL = input("Enter another URL ([y]/n)? ")
 
 # a set of urls that we have already crawled
 processed_urls = set()
