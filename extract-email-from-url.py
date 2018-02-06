@@ -69,10 +69,7 @@ while len(user_urls):
         if not link in user_urls and not link in processed_user_urls and not link in new_urls and not link in processed_urls and user_input_contain_crawl_to_base_path in link:
             new_urls.append(link)
 
-print(new_urls)
-
-"""
-# process urls one by one until we exhaust the queue
+# process new urls one by one until we exhaust the queue
 while len(new_urls):
 
     # move next url from the queue to the set of processed urls
@@ -96,6 +93,9 @@ while len(new_urls):
     new_emails = set(re.findall(r"[a-z0-9\.\-+_]+@[a-z0-9\.\-+_]+\.[a-z]+", response.text, re.I))
     emails.update(new_emails)
 
+print(emails)
+
+"""
 # Write emails to timestamped CSV
 now = datetime.datetime.now()
 extensionDateTime = now.strftime("%Y%m%d_%H%M%S")
