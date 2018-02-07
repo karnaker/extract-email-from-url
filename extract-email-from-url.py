@@ -59,7 +59,7 @@ while len(user_urls):
     # BeautifulSoup(YOUR_MARKUP})
     # to this:
     # BeautifulSoup(YOUR_MARKUP, "lxml")
-    soup = BeautifulSoup(response.text)
+    soup = BeautifulSoup(response.text, "lxml")
 
     # find and process all the anchors in the document
     for anchor in soup.find_all("a"):
